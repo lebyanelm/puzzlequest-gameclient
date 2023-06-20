@@ -1,0 +1,215 @@
+ion-app {
+  display: grid;
+  width: 100vw;
+  height: 100vh;
+  place-content: center;
+  position: relative;
+}
+
+ion-app svg {
+  width: 300px;
+  margin: auto;
+  transform: translateY(-23%);
+}
+
+.app-game-container {
+  border: 1.5px solid #eee;
+  border-radius: 10px;
+  height: auto;
+  max-height: 600px;
+  width: 480px;
+  background: #fff;
+}
+
+// NAMING BOARD: TABLE THAT HAS THE FULL SENTENCE.
+.naming-board-clue {
+  width: 100%;
+  padding: 20px;
+  border-bottom: 2px solid #eee;
+  overflow-y: visible;
+}
+
+.naming-board-clue table {
+  width: 100%;
+  border-radius: 10px;
+  gap: 10px;
+  font-weight: bolder;
+}
+
+.naming-board-clue table thead td,
+.naming-board-clue table tbody td:first-child {
+  padding: 10px 8px;
+  color: #888;
+}
+
+.naming-board-clue table td .letter-box[data-isactive="true"],
+.word-clues .word-clue .letterboxes .letterbox[data-isactive="true"] {
+  background: #d05961;
+  border-color: #d05961;
+  color: #fff !important;
+}
+
+.naming-board-clue table tbody td:not(:first-child) .letter-box {
+  border: 2px solid transparentize(#0090d9, 0.8);
+  font-family: "Arial Black", sans-serif;
+  // border-radius: 5px;
+  padding: 2px;
+  // margin-left: 1px;
+  text-align: center;
+  text-transform: uppercase;
+  font-weight: bolder;
+  color: #0090d9;
+}
+
+.naming-board-clue
+  table
+  tbody
+  td:not(:first-child)
+  .letter-box[data-isspace="true"] {
+  background: #eee;
+  color: #0090d9;
+}
+
+.word-clues {
+  display: block;
+  max-height: 400px;
+  overflow-y: scroll;
+  padding: 10px 20px 20px 20px;
+}
+
+.word-clues::-webkit-scrollbar-thumb {
+  background: #0090d9;
+}
+
+.word-clues::-webkit-scrollbar {
+  width: 4px;
+  background: transparent;
+}
+
+.word-clues .header-section-name {
+  text-align: center;
+  padding: 10px 0;
+  font-size: small;
+  font-weight: bolder;
+}
+
+.word-clues .word-clue {
+  display: grid;
+  gap: 20px;
+  font-size: small;
+  font-weight: bolder;
+  padding: 10px;
+  background: #eee;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  margin-bottom: 10px;
+
+  grid-template-columns: 0.4fr 0.6fr;
+}
+
+.word-clues .word-clue .clue {
+  font-size: normal !important;
+}
+
+.word-clues .word-clue .clue .word-example {
+  color: #0090d9;
+  font-style: italic;
+}
+
+// WORD CLUE INPUT
+.word-clues .word-clue input {
+  width: 100%;
+  border: 2px solid #555;
+  text-transform: uppercase;
+  border-radius: 3px;
+  text-indent: 5px;
+  outline: none;
+
+  &:disabled {
+    opacity: 0.6;
+  }
+}
+
+.word-clues .word-clue input.incorrect-input {
+  border-color: #d05961 !important;
+  color: #d05961 !important;
+  animation: BLINK 300ms linear infinite;
+  background: #d05961 !important;
+  transition: background;
+}
+
+.word-clues .word-clue[data-iscorrect="true"] {
+  background: transparentize(green, 0.7);
+}
+
+.word-clues .word-clue[data-iscorrect="true"] input,
+.word-clues .word-clue[data-iscorrect="true"] .letterbox .contents {
+  border-color: green !important;
+  color: green;
+}
+
+.word-clues .word-clue .letterboxes {
+  margin-top: 5px;
+}
+
+.word-clues .word-clue .letterboxes,
+.word-clues .word-clue .letterboxes .letterbox {
+  display: flex;
+  align-items: center;
+}
+
+.word-clues .word-clue .letterboxes .letterbox {
+  flex-direction: column;
+  text-transform: uppercase;
+  margin-right: 2px;
+
+  &[data-hasbeencorrected="true"] {
+    .contents {
+      color: green;
+      border-color: green;
+    }
+
+    .clue-position::after {
+      visibility: visible;
+    }
+  }
+}
+
+.word-clues .word-clue .letterboxes .letterbox .contents {
+  padding: 0px 5px;
+  border-radius: 3px;
+  border: 2px solid #555;
+  background: #fff;
+}
+
+.word-clue .clue-position {
+  color: #0090d9;
+}
+
+.clue-position::after {
+  content: "\2713";
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 15px;
+  width: 15px;
+  border-radius: 100px;
+  background: green;
+  color: #fff;
+  visibility: hidden;
+}
+
+.toast-message {
+  display: block;
+  padding: 20px;
+  border-radius: 10px;
+  background: #222;
+  color: #fff;
+  text-align: center;
+  font-weight: bolder;
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  pointer-events: none !important;
+}
